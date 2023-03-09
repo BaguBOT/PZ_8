@@ -6,122 +6,102 @@ namespace PZ_8
     {
         static void Main(string[] args)
         {
-            bool g;
+            Random rnd = new Random();
             Student stud1 = new Student("Student", new offset());
-            stud1.GO();
-            
+            int ball1 = rnd.Next(50, 100);
+            int ball2 = rnd.Next(50, 100);
+            int ball3 = rnd.Next(2,5);
+            stud1.GO(ball1);
             stud1.Knowledge = new Diffoffset();
-            stud1.GO();
-           
-            stud1.Knowledge = new exam();
-            stud1.GO();
+            stud1.GO(ball2);
+            if (ball3 < 70 && ball2 < 70)
+            {
+                Console.WriteLine("Не допущен ");
+            }
+            else
+            {
 
+                stud1.Knowledge = new exam();
+                stud1.GO(ball3); 
+        }
             Console.ReadLine();
         }
-        public interface IStrategy
-        {
-            void Algorithm();
-        }
-
-        public class ConcreteStrategy1 : IStrategy
-        {
-            public void Algorithm()
-            { }
-        }
-
-        public class ConcreteStrategy2 : IStrategy
-        {
-            public void Algorithm()
-            { }
-        }
-
-        public class Context
-        {
-            public IStrategy ContextStrategy { get; set; }
-
-            public Context(IStrategy _strategy)
-            {
-                ContextStrategy = _strategy;
-            }
-
-            public void ExecuteAlgorithm()
-            {
-                ContextStrategy.Algorithm();
-            }
-        }
-      
         interface IKnowledge
         {
-            
-            void GO()
-            {
-            
-            }    
+            void GO(int ball);
+           
         }
         
         class offset : IKnowledge
         {
-            bool ok = true;
-            public void GO()
+           
+            public void GO(int g)
             {
-                Console.WriteLine("Сдача зачета ");
-                int gard = new Random().Next(2, 5);
-                Console.WriteLine("Зачет {0}", gard);
-               
-
-               if (gard == 2)
+                if (g < 70)
                 {
-                    Console.WriteLine("ЗАчет не cдан");
-                    ok = false;
+                    Console.WriteLine("Зачет не cдан"+ g);
+
                 }
+                else
+                {
+                    Console.WriteLine("Сдан зачета "+g);
+                }             
             }
         }
 
         class Diffoffset : IKnowledge
         {
-            bool ok = true;
-            public void GO()
+           
+            public void GO(int g)
             {
-                int gard = new Random().Next(2, 5);
-                Console.WriteLine("Сдача Диф.зачета ");
-                Console.WriteLine("Диф.зачета {0}", gard);
-                if (gard == 2)
+                if (g < 70)
                 {
-                    Console.WriteLine("Диф.зачета не cдан");
-                    ok = false;
+                    Console.WriteLine("Диф.зачета не cдан"+ g);
                 }
+                
+                else
+                {
+                    Console.WriteLine("Сдан Диф.зачета "+g);
+                }
+                return;
             }
         }
         class exam : IKnowledge
         {
-            bool ok = true;
-            public void GO()
+           
+            public void GO(int g)
             {
-                int gard = new Random().Next(2, 5);
-                Console.WriteLine("Сдача экзамена ");
-                Console.WriteLine("Экзамена {0}", gard);
-                if (gard == 2)
+                if (g != 2)
                 {
-                    Console.WriteLine("Экзамена не cдан");
-                    ok = false;
+                    Console.WriteLine("Сдан экзамена "+ g);
+
+                }
+                else
+                {
+                    Console.WriteLine("Экзамена не cдан"+g);
+                
                 }
             }
         }
         class Student
         {
-            protected int garden;
-              protected string name;
-
+      
+            private string _name;
+            public string Name1
+            {
+                get { return _name; }
+                set { _name = value; }
+            }
             public Student(string Name, IKnowledge task)
             {
-        
-                name = Name;
+                Name1 = Name;
                 Knowledge = task;
             }
             public IKnowledge Knowledge { private get; set; }
-            public void GO()
+            public void GO(int ball)
             {
-                Knowledge.GO();
+               
+                Knowledge.GO(ball);
             }
         }
     }
