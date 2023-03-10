@@ -14,7 +14,7 @@ namespace PZ_8
             stud1.GO(ball1);
             stud1.Knowledge = new Diffoffset();
             stud1.GO(ball2);
-            if (ball3 < 50 && ball2 < 30)
+            if (ball3 < 50 || ball2 < 30)
             {
                 Console.WriteLine("Не допущен ");
             }
