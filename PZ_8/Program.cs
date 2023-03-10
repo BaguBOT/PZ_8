@@ -8,19 +8,18 @@ namespace PZ_8
         {
             Random rnd = new Random();
             Student stud1 = new Student("Student", new offset());
-            int ball1 = rnd.Next(50, 100);
-            int ball2 = rnd.Next(50, 100);
-            int ball3 = rnd.Next(2,5);
+            int ball1 = rnd.Next(20, 100);
+            int ball2 = rnd.Next(20, 100);
+            int ball3 = rnd.Next(20, 100);
             stud1.GO(ball1);
             stud1.Knowledge = new Diffoffset();
             stud1.GO(ball2);
-            if (ball3 < 70 && ball2 < 70)
+            if (ball3 < 50 && ball2 < 30)
             {
                 Console.WriteLine("Не допущен ");
             }
             else
             {
-
                 stud1.Knowledge = new exam();
                 stud1.GO(ball3); 
         }
@@ -37,14 +36,25 @@ namespace PZ_8
            
             public void GO(int g)
             {
-                if (g < 70)
+                if (g <= 50&& g >30)
                 {
-                    Console.WriteLine("Зачет не cдан"+ g);
-
+                    Console.WriteLine("Сдан зачета  на 3| Баллов = " + g);
+                    return;
+                }
+                if (g <= 70&& g >50)
+                {
+                    Console.WriteLine("Сдан зачета  на 4| Баллов = " + g);
+                    return;
+                }
+                if(g <= 100&& g > 70 )
+                {
+                    Console.WriteLine("Сдан зачета  на 5|Баллов = " + g);
+                    return;
                 }
                 else
                 {
-                    Console.WriteLine("Сдан зачета "+g);
+                    Console.WriteLine("Зачет не сдан|Баллов = "+g);
+
                 }             
             }
         }
@@ -54,16 +64,26 @@ namespace PZ_8
            
             public void GO(int g)
             {
-                if (g < 70)
+                if (g <= 30 && g > 10)
                 {
-                    Console.WriteLine("Диф.зачета не cдан"+ g);
+                    Console.WriteLine("Сдан Диф.зачета  на 3| Баллов = " + g);
+                    return;
                 }
-                
+                if (g <= 50 && g > 30)
+                {
+                    Console.WriteLine("Сдан Диф.зачета  на 4| Баллов = " + g);
+                    return;
+
+                }
+                if (g <= 100 && g > 50)
+                {
+                    Console.WriteLine("Сдан Диф.зачета  на 5|Баллов = " + g);
+                    return;
+                }
                 else
                 {
-                    Console.WriteLine("Сдан Диф.зачета "+g);
+                    Console.WriteLine("Диф.Зачет не сдан|Баллов = " + g);
                 }
-                return;
             }
         }
         class exam : IKnowledge
@@ -71,15 +91,25 @@ namespace PZ_8
            
             public void GO(int g)
             {
-                if (g != 2)
+                if (g <= 60 && g > 50 )
                 {
-                    Console.WriteLine("Сдан экзамена "+ g);
-
+                    Console.WriteLine("Сдан Экзамен   на 3| Баллов = " + g);
+                    return;
+                }
+                if (g <= 70 && g > 60 )
+                {
+                    Console.WriteLine("Сдан Экзамен  на 4| Баллов = " + g);
+                    return;
+                }
+                if (g <= 100 && g >70)
+                {
+                    Console.WriteLine("Сдан Экзамен  на 5|Баллов = " + g);
+                    return;
                 }
                 else
                 {
-                    Console.WriteLine("Экзамена не cдан"+g);
-                
+                    Console.WriteLine("Экзамен не сдан|Баллов = " + g);
+
                 }
             }
         }
